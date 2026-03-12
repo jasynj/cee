@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node --version)",
+      "Bash(npm --version)",
+      "Bash(npm uninstall motion)",
+      "Bash(npm install swiper aos react-intersection-observer)",
+      "Bash(npm run build)",
+      "mcp__Claude_Preview__preview_start"
+    ]
+  }
+}
