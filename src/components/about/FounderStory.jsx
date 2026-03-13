@@ -1,3 +1,5 @@
+import founder from "../../assets/founder.jpeg";
+
 export default function FounderStory() {
   return (
     <section className="py-24 px-6 bg-cream text-black">
@@ -5,9 +7,9 @@ export default function FounderStory() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           <div className="relative" data-aos="fade-right">
             <img
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=750&fit=crop"
+              src={founder}
               alt="Craig Johnson Jr."
-              className="w-full h-[500px] lg:h-[600px] object-cover"
+              className="w-full h-[500px] lg:h-[600px] object-cover object-top"
               loading="lazy"
             />
             <div className="absolute -bottom-6 -right-6 w-32 h-32 border-b-4 border-r-4 border-gold hidden lg:block" />
@@ -17,10 +19,11 @@ export default function FounderStory() {
             <p className="font-nav text-gold uppercase tracking-[0.3em] text-xs mb-4">
               Our Story
             </p>
-            <h2 className="font-heading text-4xl md:text-5xl font-semibold text-black mb-2 leading-tight">
-              Meet The Founder
+            <p className="font-script text-gold text-3xl mb-1">Meet The Founder</p>
+            <h2 className="font-heading text-4xl md:text-5xl font-semibold text-black mb-4 leading-tight">
+              Craig Johnson Jr.
             </h2>
-            <p className="font-script text-gold text-3xl mb-8">Craig Johnson Jr.</p>
+
             <div className="w-16 h-0.5 bg-gold mb-8" />
 
             <div className="space-y-4 text-black/70 text-sm md:text-base leading-relaxed">

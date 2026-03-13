@@ -104,9 +104,8 @@ function Calendar({ selectedDate, onSelect }) {
         <button
           onClick={prevMonth}
           disabled={isPastMonth}
-          className={`w-8 h-8 flex items-center justify-center text-white/50 hover:text-gold transition-colors cursor-pointer ${
-            isPastMonth ? 'opacity-30 cursor-not-allowed' : ''
-          }`}
+          className={`w-8 h-8 flex items-center justify-center text-white/50 hover:text-gold transition-colors cursor-pointer ${isPastMonth ? 'opacity-30 cursor-not-allowed' : ''
+            }`}
         >
           &larr;
         </button>
@@ -145,13 +144,12 @@ function Calendar({ selectedDate, onSelect }) {
               key={day}
               onClick={() => handleDayClick(day)}
               disabled={isPast}
-              className={`h-10 flex items-center justify-center text-sm transition-all cursor-pointer ${
-                isPast
-                  ? 'text-white/15 cursor-not-allowed'
-                  : isSelected
-                    ? 'bg-gold text-black font-semibold'
-                    : 'text-white/70 hover:bg-gold/20 hover:text-gold'
-              }`}
+              className={`h-10 flex items-center justify-center text-sm transition-all cursor-pointer ${isPast
+                ? 'text-white/15 cursor-not-allowed'
+                : isSelected
+                  ? 'bg-gold text-black font-semibold'
+                  : 'text-white/70 hover:bg-gold/20 hover:text-gold'
+                }`}
             >
               {day}
             </button>
@@ -260,11 +258,10 @@ export default function BookingForm() {
                       <button
                         key={slot.id}
                         onClick={() => updateField('timeSlot', slot.id)}
-                        className={`p-4 border text-center transition-all cursor-pointer ${
-                          formData.timeSlot === slot.id
-                            ? 'border-gold bg-gold/10 text-gold'
-                            : 'border-white/10 text-white/50 hover:border-gold/30 hover:text-white/80'
-                        }`}
+                        className={`p-4 border text-center transition-all cursor-pointer ${formData.timeSlot === slot.id
+                          ? 'border-gold bg-gold/10 text-gold'
+                          : 'border-white/10 text-white/50 hover:border-gold/30 hover:text-white/80'
+                          }`}
                       >
                         <span className="block font-nav text-xs uppercase tracking-wider mb-1">
                           {slot.label}
@@ -392,3 +389,9 @@ export default function BookingForm() {
     </section>
   )
 }
+
+
+// Todo:
+// // Food/ Menu (confirm if they want catering, and if so, what type of cuisine or specific menu items they have in mind, )
+// Ask Mr Craig again what other fields he wants to add to the form
+// Whether they have tables or nah

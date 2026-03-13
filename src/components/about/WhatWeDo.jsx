@@ -39,7 +39,7 @@ export default function WhatWeDo() {
               <h3 className="font-heading text-xl text-white font-semibold mb-1">
                 {service.title}
               </h3>
-              <p className="font-script text-gold text-lg mb-4">{service.scriptTitle}</p>
+              {/* <p className="font-script text-gold text-lg mb-4">{service.scriptTitle}</p> */}
               <div className="w-8 h-0.5 bg-gold/30 mx-auto mb-4" />
               <p className="text-white/50 text-sm leading-relaxed">{service.description}</p>
             </div>

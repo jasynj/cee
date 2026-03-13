@@ -4,10 +4,8 @@ import { FaInstagram, FaFacebookF, FaTiktok, FaYoutube } from 'react-icons/fa'
 import { MdEmail, MdPhone, MdLocationOn } from 'react-icons/md'
 
 const socialLinks = [
-  { icon: FaInstagram, href: '#', label: 'Instagram' },
-  { icon: FaFacebookF, href: '#', label: 'Facebook' },
-  { icon: FaTiktok, href: '#', label: 'TikTok' },
-  { icon: FaYoutube, href: '#', label: 'YouTube' },
+  { icon: FaInstagram, href: 'https://www.instagram.com/craigevents_/', label: 'Instagram' },
+  { icon: FaFacebookF, href: 'https://www.facebook.com/CraigS.JohnsonJr', label: 'Facebook' },
 ]
 
 const quickLinks = [
@@ -36,10 +34,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div>
             <h3 className="font-heading text-2xl font-semibold text-gold mb-4">
-              Craig Events
+              Craig Events & Entertainments
             </h3>
-            <p className="font-script text-gold text-lg mb-4">& Entertainments</p>
+            {/* <p className="font-script text-gold text-lg mb-4"></p> */}
             <p className="text-white/50 text-sm leading-relaxed">
+
               Bringing your vision into reality with exceptional event planning, entertainment, and unforgettable experiences.
             </p>
             <div className="flex items-center gap-3 mt-6">
@@ -83,15 +82,15 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-white/50 text-sm">
                 <MdLocationOn className="text-gold flex-shrink-0 mt-0.5" size={18} />
-                <span>Your City, Your Country</span>
+                <span>Grambling, LA </span>
               </li>
               <li className="flex items-center gap-3 text-white/50 text-sm">
                 <MdPhone className="text-gold flex-shrink-0" size={18} />
-                <span>+1 (555) 000-0000</span>
+                <span>+1 (318) 453-0652</span>
               </li>
               <li className="flex items-center gap-3 text-white/50 text-sm">
                 <MdEmail className="text-gold flex-shrink-0" size={18} />
-                <span>info@ceecraigevents.com</span>
+                <span>craigsjohnson12@gmail.com</span>
               </li>
             </ul>
           </div>
@@ -129,13 +128,16 @@ export default function Footer() {
 
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-white/30 text-xs">
-            &copy; {new Date().getFullYear()} Craig Events & Entertainments. All rights reserved.
+            &copy; {new Date().getFullYear()} Craig Events & Entertainments. <span className='text-gold'> All rights reserved.
+            </span>
           </p>
           <p className="text-white/30 text-xs">
-            Designed with excellence
+            Designed by <a href="https://jasynj.github.io/" className="text-gold hover:text-gold-dark transition-colors"> Chimdinma Jason </a>
           </p>
         </div>
       </div>
     </footer>
   )
 }
+
+// #TODO: Add newsletter functionality
