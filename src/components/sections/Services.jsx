@@ -1,10 +1,13 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Pagination } from 'swiper/modules'
+import { useNavigate } from 'react-router-dom'
 import SectionHeader from '../ui/SectionHeader'
 import ServiceCard from '../ui/ServiceCard'
 import { services } from '../../data/services'
 
 export default function Services() {
+  const navigate = useNavigate()
+
   return (
     <section id="services" className="py-24 px-6">
       <div className="max-w-7xl mx-auto">
@@ -33,6 +36,7 @@ export default function Services() {
                 title={service.title}
                 scriptTitle={service.scriptTitle}
                 image={service.image}
+                onClick={() => navigate('/about#services')}
               />
             </SwiperSlide>
           ))}

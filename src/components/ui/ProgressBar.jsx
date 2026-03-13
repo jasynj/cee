@@ -1,6 +1,8 @@
-const STEP_LABELS = ['Personal Info', 'Event Details', 'Budget & Message']
+const DEFAULT_LABELS = ['Personal Info', 'Event Details', 'Budget & Message']
 
-export default function ProgressBar({ currentStep, totalSteps }) {
+export default function ProgressBar({ currentStep, totalSteps, labels }) {
+  const stepLabels = labels || DEFAULT_LABELS
+
   return (
     <div className="flex items-center justify-center mb-10">
       {Array.from({ length: totalSteps }, (_, i) => (
@@ -22,7 +24,7 @@ export default function ProgressBar({ currentStep, totalSteps }) {
                 i <= currentStep ? 'text-gold' : 'text-white/30'
               }`}
             >
-              {STEP_LABELS[i]}
+              {stepLabels[i]}
             </span>
           </div>
           {i < totalSteps - 1 && (

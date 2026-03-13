@@ -1,7 +1,7 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { FaInstagram, FaFacebookF, FaTiktok, FaYoutube } from 'react-icons/fa'
 import { MdEmail, MdPhone, MdLocationOn } from 'react-icons/md'
-import { useScrollTo } from '../../hooks/useScrollTo'
 
 const socialLinks = [
   { icon: FaInstagram, href: '#', label: 'Instagram' },
@@ -11,16 +11,24 @@ const socialLinks = [
 ]
 
 const quickLinks = [
-  { label: 'Home', id: 'hero' },
-  { label: 'About Us', id: 'about' },
-  { label: 'Services', id: 'services' },
-  { label: 'Portfolio', id: 'gallery' },
-  { label: 'Contact', id: 'contact' },
+  { label: 'Home', path: '/' },
+  { label: 'About Us', path: '/about' },
+  { label: 'Services', path: '/about', hash: 'services' },
+  // { label: 'Portfolio', path: '/', hash: 'gallery' },
+  { label: 'Book an Event', path: '/book' },
 ]
 
 export default function Footer() {
-  const scrollTo = useScrollTo()
+  const navigate = useNavigate()
   const [email, setEmail] = useState('')
+
+  const handleLinkClick = (link) => {
+    if (link.hash) {
+      navigate(`${link.path}#${link.hash}`)
+    } else {
+      navigate(link.path)
+    }
+  }
 
   return (
     <footer className="bg-dark-card pt-20 pb-8 px-6">
@@ -56,9 +64,9 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
-                <li key={link.id}>
+                <li key={link.label}>
                   <button
-                    onClick={() => scrollTo(link.id)}
+                    onClick={() => handleLinkClick(link)}
                     className="text-white/50 text-sm hover:text-gold transition-colors cursor-pointer"
                   >
                     {link.label}

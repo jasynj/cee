@@ -1,9 +1,9 @@
 export const NAV_ITEMS = [
-  { label: 'Home', id: 'hero' },
-  { label: 'About', id: 'about' },
-  { label: 'Services', id: 'services' },
-  { label: 'Portfolio', id: 'gallery' },
-  { label: 'Contact', id: 'contact' },
+  { label: 'Home', path: '/' },
+  { label: 'About', path: '/about' },
+  { label: 'Services', path: '/about', hash: 'services' },
+  // { label: 'Portfolio', path: '/', hash: 'gallery' },
+  { label: 'Contact', path: '/book' },
 ]
 
 export const FORMSPREE_ID = import.meta.env.VITE_FORMSPREE_ID || 'xyzplaceholder'

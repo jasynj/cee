@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { NAV_ITEMS } from '../../constants/navigation'
-import { useScrollTo } from '../../hooks/useScrollTo'
 import { MdMenu, MdClose } from 'react-icons/md'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [logoError, setLogoError] = useState(false)
-  const scrollTo = useScrollTo()
+  const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,9 +18,21 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const handleNavClick = (id) => {
-    scrollTo(id)
+  const handleNavClick = (item) => {
     setIsOpen(false)
+
+    if (item.hash && location.pathname === item.path) {
+      // Already on the right page — just scroll to the hash
+      const el = document.getElementById(item.hash)
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    } else if (item.hash) {
+      // Navigate to page with hash — ScrollToTop handles the scroll
+      navigate(`${item.path}#${item.hash}`)
+    } else {
+      navigate(item.path)
+    }
   }
 
   return (
@@ -33,7 +46,7 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           <button
-            onClick={() => handleNavClick('hero')}
+            onClick={() => navigate('/')}
             className="flex items-center gap-3 cursor-pointer"
           >
             {!logoError ? (
@@ -54,9 +67,13 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-10">
             {NAV_ITEMS.map((item) => (
               <button
-                key={item.id}
-                onClick={() => handleNavClick(item.id)}
-                className="font-nav text-[13px] uppercase tracking-[0.2em] text-white/80 hover:text-gold transition-colors duration-300 cursor-pointer"
+                key={item.label}
+                onClick={() => handleNavClick(item)}
+                className={`font-nav text-[13px] uppercase tracking-[0.2em] transition-colors duration-300 cursor-pointer ${
+                  location.pathname === item.path && !item.hash
+                    ? 'text-gold'
+                    : 'text-white/80 hover:text-gold'
+                }`}
               >
                 {item.label}
               </button>
@@ -85,8 +102,8 @@ export default function Navbar() {
           <nav className="flex flex-col items-center gap-8">
             {NAV_ITEMS.map((item) => (
               <button
-                key={item.id}
-                onClick={() => handleNavClick(item.id)}
+                key={item.label}
+                onClick={() => handleNavClick(item)}
                 className="font-nav text-lg text-white/90 hover:text-gold transition-colors uppercase tracking-[0.3em] cursor-pointer"
               >
                 {item.label}
