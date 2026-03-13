@@ -6,7 +6,10 @@
       "Bash(npm uninstall motion)",
       "Bash(npm install swiper aos react-intersection-observer)",
       "Bash(npm run build)",
-      "mcp__Claude_Preview__preview_start"
+      "mcp__Claude_Preview__preview_start",
+      "WebFetch(domain:pkeventsng.com)",
+      "Bash(npm install react-router-dom)",
+      "Bash(python3:*)"
     ]
   }
 }

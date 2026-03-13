@@ -1,11 +1,11 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Pagination, EffectFade } from 'swiper/modules'
+import { useNavigate } from 'react-router-dom'
 import Button from '../ui/Button'
-import { useScrollTo } from '../../hooks/useScrollTo'
 import { heroSlides } from '../../data/heroSlides'
 
 export default function Hero() {
-  const scrollTo = useScrollTo()
+  const navigate = useNavigate()
 
   return (
     <section id="hero" className="relative">
@@ -33,7 +33,7 @@ export default function Hero() {
                   <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-semibold text-white leading-tight mb-10">
                     {slide.heading}
                   </h1>
-                  <Button variant="white" onClick={() => scrollTo('contact')}>
+                  <Button variant="white" onClick={() => navigate('/book')}>
                     Book Now
                   </Button>
                 </div>

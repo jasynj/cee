@@ -25,19 +25,19 @@ export default function Stats() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12" data-aos="fade-up" data-aos-delay="200">
           <div className="text-center">
-            <p className="font-heading text-6xl md:text-7xl font-bold text-white mb-2">
-              <Counter end={7} suffix="+" />
+            <p className="font-heading text-6xl md:text-7xl font-bold text-white mb-4">
+              <Counter end={5} suffix="+" />
             </p>
             <p className="font-nav text-xs uppercase tracking-[0.3em] text-gold">Years Experience</p>
           </div>
           <div className="text-center">
-            <p className="font-heading text-6xl md:text-7xl font-bold text-white mb-2">
-              <Counter end={500} suffix="+" />
+            <p className="font-heading text-6xl md:text-7xl font-bold text-white mb-4">
+              <Counter end={50} suffix="+" />
             </p>
             <p className="font-nav text-xs uppercase tracking-[0.3em] text-gold">Projects Completed</p>
           </div>
           <div className="text-center">
-            <p className="font-heading text-6xl md:text-7xl font-bold text-white mb-2">
+            <p className="font-heading text-6xl md:text-7xl font-bold text-white mb-4">
               <Counter end={100} suffix="%" />
             </p>
             <p className="font-nav text-xs uppercase tracking-[0.3em] text-gold">Client Satisfaction</p>

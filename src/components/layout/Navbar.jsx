@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { NAV_ITEMS } from '../../constants/navigation'
-import { useScrollTo } from '../../hooks/useScrollTo'
 import { MdMenu, MdClose } from 'react-icons/md'
+import logo from '../../assets/logo.png'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [logoError, setLogoError] = useState(false)
-  const scrollTo = useScrollTo()
+  const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,23 +19,32 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const handleNavClick = (id) => {
-    scrollTo(id)
+  const handleNavClick = (item) => {
     setIsOpen(false)
+
+    if (item.hash && location.pathname === item.path) {
+      const el = document.getElementById(item.hash)
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    } else if (item.hash) {
+      navigate(`${item.path}#${item.hash}`)
+    } else {
+      navigate(item.path)
+    }
   }
 
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled
-            ? 'bg-black shadow-lg shadow-black/30 py-2'
-            : 'bg-transparent py-4'
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
+          ? 'bg-black shadow-lg shadow-black/30 py-2'
+          : 'bg-transparent py-4'
+          }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           <button
-            onClick={() => handleNavClick('hero')}
+            onClick={() => navigate('/')}
             className="flex items-center gap-3 cursor-pointer"
           >
             {!logoError ? (
@@ -45,18 +56,23 @@ export default function Navbar() {
               />
             ) : (
               <div className="flex items-baseline gap-1.5">
-                <span className="font-heading text-lg md:text-xl font-semibold text-gold leading-none">CEE</span>
-                <span className="hidden sm:inline font-script text-gold text-base md:text-lg leading-none">Craig Events</span>
+                {/* <span className="font-heading text-lg md:text-xl font-semibold text-gold leading-none">CEE</span>
+                <span className="hidden sm:inline font-script text-gold text-base md:text-lg leading-none">Craig Events</span> */}
+                <img src={logo} alt="Logo" className="h-8 w-auto" onError={() => setLogoError(true)} />
               </div>
+
             )}
           </button>
 
           <div className="hidden lg:flex items-center gap-10">
             {NAV_ITEMS.map((item) => (
               <button
-                key={item.id}
-                onClick={() => handleNavClick(item.id)}
-                className="font-nav text-[13px] uppercase tracking-[0.2em] text-white/80 hover:text-gold transition-colors duration-300 cursor-pointer"
+                key={item.label}
+                onClick={() => handleNavClick(item)}
+                className={`font-nav text-[13px] uppercase tracking-[0.2em] transition-colors duration-300 cursor-pointer ${location.pathname === item.path && !item.hash
+                  ? 'text-gold'
+                  : 'text-white/80 hover:text-gold'
+                  }`}
               >
                 {item.label}
               </button>
@@ -85,8 +101,8 @@ export default function Navbar() {
           <nav className="flex flex-col items-center gap-8">
             {NAV_ITEMS.map((item) => (
               <button
-                key={item.id}
-                onClick={() => handleNavClick(item.id)}
+                key={item.label}
+                onClick={() => handleNavClick(item)}
                 className="font-nav text-lg text-white/90 hover:text-gold transition-colors uppercase tracking-[0.3em] cursor-pointer"
               >
                 {item.label}

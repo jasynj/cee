@@ -1,4 +1,4 @@
-export default function ServiceCard({ title, scriptTitle, image }) {
+export default function ServiceCard({ title, scriptTitle, image, onClick }) {
   return (
     <div className="relative group h-[450px] overflow-hidden" data-aos="fade-up">
       <img
@@ -12,9 +12,12 @@ export default function ServiceCard({ title, scriptTitle, image }) {
         <h3 className="font-heading text-2xl text-white font-semibold">{title}</h3>
         <p className="font-script text-gold text-xl">{scriptTitle}</p>
         <div className="mt-3 overflow-hidden h-0 group-hover:h-8 transition-all duration-300">
-          <span className="font-nav text-xs uppercase tracking-[0.2em] text-gold cursor-pointer hover:text-gold-light">
+          <button
+            onClick={onClick}
+            className="font-nav text-xs uppercase tracking-[0.2em] text-gold cursor-pointer hover:text-gold-light"
+          >
             Explore &rarr;
-          </span>
+          </button>
         </div>
       </div>
     </div>

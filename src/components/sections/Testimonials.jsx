@@ -34,11 +34,11 @@ export default function Testimonials() {
           autoplay={{ delay: 6000, disableOnInteraction: false }}
           pagination={{ clickable: true }}
           loop
-          className="pb-14"
+          className="testimonials-swiper"
         >
           {testimonials.map((item) => (
             <SwiperSlide key={item.id}>
-              <div className="px-4">
+              <div className="px-4 pb-14">
                 <p className="text-white/80 text-lg md:text-xl leading-relaxed italic mb-8 max-w-3xl mx-auto">
                   &ldquo;{item.quote}&rdquo;
                 </p>
