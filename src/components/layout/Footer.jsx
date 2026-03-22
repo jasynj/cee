@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useForm } from '@formspree/react'
 import { FaInstagram, FaFacebookF, FaTiktok, FaYoutube } from 'react-icons/fa'
 import { MdEmail, MdPhone, MdLocationOn } from 'react-icons/md'
+import { FORMSPREE_ID } from '../../constants/navigation'
 
 const socialLinks = [
   { icon: FaInstagram, href: 'https://www.instagram.com/craigevents_/', label: 'Instagram' },
@@ -19,6 +21,7 @@ const quickLinks = [
 export default function Footer() {
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
+  const [newsletterState, submitNewsletter] = useForm(FORMSPREE_ID)
 
   const handleLinkClick = (link) => {
     if (link.hash) {
@@ -102,27 +105,27 @@ export default function Footer() {
             <p className="text-white/50 text-sm mb-4">
               Subscribe to get updates on our latest events and offers.
             </p>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault()
-                setEmail('')
-              }}
-              className="flex"
-            >
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Your email"
-                className="flex-1 bg-dark-elevated border border-white/10 px-4 py-2.5 text-sm text-white placeholder-white/30 focus:outline-none focus:border-gold transition-colors"
-              />
-              <button
-                type="submit"
-                className="bg-gold text-black px-5 py-2.5 font-nav text-xs uppercase tracking-wider hover:bg-gold-dark transition-colors cursor-pointer"
-              >
-                Send
-              </button>
-            </form>
+            {newsletterState.succeeded ? (
+              <p className="text-gold text-sm">Thanks for subscribing!</p>
+            ) : (
+              <form onSubmit={submitNewsletter} className="flex">
+                <input
+                  type="email"
+                  name="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Your email"
+                  className="flex-1 bg-dark-elevated border border-white/10 px-4 py-2.5 text-sm text-white placeholder-white/30 focus:outline-none focus:border-gold transition-colors"
+                />
+                <button
+                  type="submit"
+                  disabled={newsletterState.submitting}
+                  className="bg-gold text-black px-5 py-2.5 font-nav text-xs uppercase tracking-wider hover:bg-gold-dark transition-colors cursor-pointer disabled:opacity-60"
+                >
+                  Send
+                </button>
+              </form>
+            )}
           </div>
         </div>
 
