@@ -29,7 +29,7 @@ export default function ProgressBar({ currentStep, totalSteps, labels }) {
           </div>
           {i < totalSteps - 1 && (
             <div
-              className={`w-12 md:w-20 h-0.5 mx-2 transition-colors duration-300 ${
+              className={`flex-1 max-w-[3.5rem] h-0.5 mx-1 transition-colors duration-300 ${
                 i < currentStep ? 'bg-gold' : 'bg-white/20'
               }`}
             />

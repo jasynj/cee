@@ -8,6 +8,7 @@ import HomePage from './pages/HomePage'
 import AboutPage from './pages/AboutPage'
 import BookingPage from './pages/BookingPage'
 
+
 function App() {
   useEffect(() => {
     AOS.init({
