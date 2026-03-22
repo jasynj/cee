@@ -23,7 +23,7 @@ export default function Gallery() {
               <img
                 src={image.src}
                 alt={image.alt}
-                className="w-full block"
+                className={`${image.className ?? 'w-full'} block`}
                 loading="lazy"
               />
             </div>

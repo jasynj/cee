@@ -6,7 +6,7 @@ export default function BookingHero() {
           className="font-nav text-gold uppercase tracking-[0.4em] text-xs mb-6"
           data-aos="fade-up"
         >
-          Schedule Your Event
+          Plan Your Event
         </p>
         <h1
           className="font-heading text-5xl md:text-6xl font-semibold text-white leading-tight mb-4"
@@ -21,7 +21,7 @@ export default function BookingHero() {
           data-aos="fade-up"
           data-aos-delay="200"
         >
-          Select your preferred date and time, then fill in the details. We&apos;ll get back to you within 24 hours.
+          Tell us about your vision — from the details to the décor. We&apos;ll respond within 24 hours with a personalised quote.
         </p>
       </div>
     </section>

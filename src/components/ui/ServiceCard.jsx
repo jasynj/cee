@@ -1,10 +1,10 @@
-export default function ServiceCard({ title, scriptTitle, image, onClick }) {
+export default function ServiceCard({ title, scriptTitle, image, imageClassName, onClick }) {
   return (
     <div className="relative group h-[450px] overflow-hidden" data-aos="fade-up">
       <img
         src={image}
         alt={title}
-        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-110${imageClassName ? ` ${imageClassName}` : ''}`}
         loading="lazy"
       />
       <div className="service-card-overlay absolute inset-0" />

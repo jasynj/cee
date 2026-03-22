@@ -36,6 +36,7 @@ export default function Services() {
                 title={service.title}
                 scriptTitle={service.scriptTitle}
                 image={service.image}
+                imageClassName={service.imageClassName}
                 onClick={() => navigate('/about#services')}
               />
             </SwiperSlide>
