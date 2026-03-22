@@ -1,16 +1,31 @@
-# React + Vite
+# Craig's Events & Entertainment — Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Marketing and booking website for Craig's Events & Entertainment, a full-service event planning company offering catering, decoration, photography, videography, and coordination.
 
-Currently, two official plugins are available:
+> **Portfolio project** — Built for a client. Shared here for portfolio purposes. Client details and proprietary assets are not included.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
 
-## React Compiler
+- **React 19** + **Vite 7**
+- **Tailwind CSS v4**
+- **React Router v7** — multi-page routing
+- **Formspree** — booking inquiry form submissions
+- **Swiper** — services carousel
+- **AOS** — scroll animations
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
 
-## Expanding the ESLint configuration
+- Multi-step booking inquiry form with conditional steps (catering & decoration steps appear only when relevant services are selected)
+- Responsive design across all pages (Home, About, Booking)
+- Gallery, services carousel, testimonials, and stats sections
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Local Development
+
+```bash
+npm install
+npm run dev
+```
+
+## Notes
+
+- Form submissions are handled via Formspree — a `FORMSPREE_ID` constant in `src/constants/navigation.js` must be set to a valid form ID

@@ -59,6 +59,15 @@ export default function StepEventDetails({ formData, updateField, errors }) {
           ))}
         </select>
         {errors.eventType && <p className={errorClass}>{errors.eventType}</p>}
+        {formData.eventType === 'Other' && (
+          <input
+            type="text"
+            value={formData.eventTypeOther || ''}
+            onChange={(e) => updateField('eventTypeOther', e.target.value)}
+            placeholder="Please describe your event type..."
+            className={`${inputClass} mt-3`}
+          />
+        )}
       </div>
 
       <div>

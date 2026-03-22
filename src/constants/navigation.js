@@ -6,4 +6,4 @@ export const NAV_ITEMS = [
   { label: 'Contact', path: '/book' },
 ]
 
-export const FORMSPREE_ID = import.meta.env.VITE_FORMSPREE_ID || 'xyzplaceholder'
+export const FORMSPREE_ID = import.meta.env.VITE_FORMSPREE_ID

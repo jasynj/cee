@@ -31,6 +31,7 @@ const initialFormData = {
   // Step 3 — Event Details
   eventName: '',
   eventType: '',
+  eventTypeOther: '',
   eventDescription: '',
   venueType: '',
   venue: '',
@@ -44,10 +45,18 @@ const initialFormData = {
   catering: {
     serviceTypes: [],
     serviceStyle: '',
-    cuisinePreferences: [],
+    menuSelections: {
+      fruitsVeggies: [],
+      appetizers:    [],
+      pastasSides:   [],
+      meatballs:     [],
+      wings:         [],
+      sliders:       [],
+      meats:         [],
+      desserts:      [],
+    },
     dietaryRestrictions: [],
     needsBarService: null,
-    hasTablesAndChairs: null,
     menuNotes: '',
   },
 
@@ -57,6 +66,16 @@ const initialFormData = {
     colorPalette: '',
     areasToDecorate: [],
     itemsNeeded: [],
+    itemQuantities: {
+      floral: '', balloons: '', centerpieces: '', backdrop: '', chairs: '',
+    },
+    otherItemNote: '',
+    hasTablesChairs: null,
+    tableShape: '',
+    numberOfTables: '',
+    chairsPerTable: '',
+    needsTableCovers: null,
+    needsChairCovers: null,
     hasMoodBoard: null,
     moodBoardUrl: '',
     decorationNotes: '',
@@ -97,10 +116,6 @@ function validateStep(stepIndex, data, cateringStepIndex, decorationStepIndex) {
       errors['catering.serviceTypes'] = 'Please select at least one catering service'
     if (!data.catering.serviceStyle)
       errors['catering.serviceStyle'] = 'Please select a service style'
-    if (data.catering.cuisinePreferences.length === 0)
-      errors['catering.cuisinePreferences'] = 'Please select at least one cuisine preference'
-    if (data.catering.hasTablesAndChairs === null)
-      errors['catering.hasTablesAndChairs'] = 'Please indicate if you have tables and chairs'
   }
 
   if (decorationStepIndex !== null && stepIndex === decorationStepIndex) {
@@ -112,6 +127,8 @@ function validateStep(stepIndex, data, cateringStepIndex, decorationStepIndex) {
       errors['decoration.itemsNeeded'] = 'Please select at least one item needed'
     if (data.decoration.hasMoodBoard === null)
       errors['decoration.hasMoodBoard'] = 'Please indicate if you have a mood board'
+    if (data.decoration.hasTablesChairs === null)
+      errors['decoration.hasTablesChairs'] = 'Please indicate if you have tables and chairs'
   }
 
   return errors
@@ -127,7 +144,9 @@ function flattenFormData(data, hasCatering, hasDecoration) {
     'Preferred Date': data.preferredDate,
     'Preferred Time': data.timeSlot,
     'Event Name': data.eventName || '—',
-    'Event Type': data.eventType,
+    'Event Type': data.eventType === 'Other' && data.eventTypeOther
+      ? `Other — ${data.eventTypeOther}`
+      : data.eventType,
     'Event Description': data.eventDescription || '—',
     'Venue Setting': data.venueType,
     'Venue / Location': data.venue || '—',
@@ -138,6 +157,7 @@ function flattenFormData(data, hasCatering, hasDecoration) {
 
   if (hasCatering) {
     const c = data.catering
+    const m = c.menuSelections
     const barService = c.serviceTypes.includes('bar')
       ? 'Yes (selected as service type)'
       : c.needsBarService === true ? 'Yes' : c.needsBarService === false ? 'No' : '—'
@@ -145,24 +165,50 @@ function flattenFormData(data, hasCatering, hasDecoration) {
     Object.assign(flat, {
       'Catering — Service Types': c.serviceTypes.join(', ') || '—',
       'Catering — Service Style': c.serviceStyle || '—',
-      'Catering — Cuisine Preferences': c.cuisinePreferences.join(', ') || '—',
+      'Catering — Menu — Fruits & Veggies': m.fruitsVeggies.join(', ') || '—',
+      'Catering — Menu — Appetizers': m.appetizers.join(', ') || '—',
+      'Catering — Menu — Pastas & Sides': m.pastasSides.join(', ') || '—',
+      'Catering — Menu — Meatballs': m.meatballs.join(', ') || '—',
+      'Catering — Menu — Wings': m.wings.join(', ') || '—',
+      'Catering — Menu — Sliders & Sandwiches': m.sliders.join(', ') || '—',
+      'Catering — Menu — Meat': m.meats.join(', ') || '—',
+      'Catering — Menu — Desserts': m.desserts.join(', ') || '—',
       'Catering — Dietary Restrictions': c.dietaryRestrictions.join(', ') || 'None specified',
       'Catering — Bar Service': barService,
-      'Catering — Has Tables & Chairs': c.hasTablesAndChairs === true ? 'Yes' : 'No',
       'Catering — Menu Notes': c.menuNotes || '—',
     })
   }
 
   if (hasDecoration) {
     const d = data.decoration
+    // Build items string with quantities for countable items
+    const COUNTABLE = ['floral', 'balloons', 'centerpieces', 'backdrop', 'chairs']
+    const itemsStr = d.itemsNeeded.map((id) => {
+      if (COUNTABLE.includes(id) && d.itemQuantities[id]) {
+        return `${id} (x${d.itemQuantities[id]})`
+      }
+      return id
+    }).join(', ') || '—'
+
     Object.assign(flat, {
       'Decoration — Theme': d.theme || '—',
       'Decoration — Color Palette': d.colorPalette || '—',
       'Decoration — Areas': d.areasToDecorate.join(', ') || '—',
-      'Decoration — Items Needed': d.itemsNeeded.join(', ') || '—',
+      'Decoration — Items Needed': itemsStr,
+      'Decoration — Has Tables & Chairs': d.hasTablesChairs === true ? 'Yes' : d.hasTablesChairs === false ? 'No' : '—',
+      ...(d.hasTablesChairs === true ? {
+        'Decoration — Table Shape': d.tableShape || '—',
+        'Decoration — Number of Tables': d.numberOfTables || '—',
+        'Decoration — Chairs Per Table': d.chairsPerTable || '—',
+        'Decoration — Needs Table Covers': d.needsTableCovers === true ? 'Yes' : d.needsTableCovers === false ? 'No' : '—',
+        'Decoration — Needs Chair Covers': d.needsChairCovers === true ? 'Yes' : d.needsChairCovers === false ? 'No' : '—',
+      } : {}),
       'Decoration — Has Mood Board': d.hasMoodBoard ? 'Yes' : 'No',
       'Decoration — Mood Board URL': d.hasMoodBoard ? (d.moodBoardUrl || '—') : 'N/A',
       'Decoration — Notes': d.decorationNotes || '—',
+      ...(d.itemsNeeded.includes('other') && d.otherItemNote
+        ? { 'Decoration — Other Item': d.otherItemNote }
+        : {}),
     })
   }
 
