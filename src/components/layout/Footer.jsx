@@ -111,7 +111,7 @@ export default function Footer() {
               <form onSubmit={submitNewsletter} className="flex">
                 <input
                   type="email"
-                  name="email"
+                  name="newsletter_email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Your email"
