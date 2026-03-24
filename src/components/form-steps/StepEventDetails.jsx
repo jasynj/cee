@@ -17,8 +17,7 @@ const EVENT_TYPES = [
 ]
 
 const BUDGET_RANGES = [
-  'Under $500',
-  '$500 – $1,000',
+  'Under $1000',
   '$1,000 – $2,500',
   '$2,500 – $5,000',
   '$5,000 – $10,000',
@@ -88,11 +87,10 @@ export default function StepEventDetails({ formData, updateField, errors }) {
             <button
               key={vt.id}
               onClick={() => updateField('venueType', vt.id)}
-              className={`p-3 border text-center transition-all cursor-pointer ${
-                formData.venueType === vt.id
+              className={`p-3 border text-center transition-all cursor-pointer ${formData.venueType === vt.id
                   ? 'border-gold bg-gold/10 text-gold'
                   : 'border-white/10 text-white/50 hover:border-gold/30 hover:text-white/80'
-              }`}
+                }`}
             >
               <span className="block font-nav text-xs uppercase tracking-wider">{vt.label}</span>
             </button>

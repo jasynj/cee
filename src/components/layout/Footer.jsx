@@ -85,11 +85,7 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-white/50 text-sm">
                 <MdLocationOn className="text-gold flex-shrink-0 mt-0.5" size={18} />
-                <span>Grambling, LA </span>
-              </li>
-              <li className="flex items-center gap-3 text-white/50 text-sm">
-                <MdPhone className="text-gold flex-shrink-0" size={18} />
-                <span>+1 (318) 453-0652</span>
+                <span>Shreveport, LA </span>
               </li>
               <li className="flex items-center gap-3 text-white/50 text-sm">
                 <MdEmail className="text-gold flex-shrink-0" size={18} />

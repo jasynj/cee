@@ -12,9 +12,9 @@ import StepDecoration from '../form-steps/StepDecoration'
 import { FORMSPREE_ID } from '../../constants/navigation'
 
 const TIME_SLOTS = [
-  { id: 'morning',   label: 'Morning',   range: '8:00 AM – 12:00 PM' },
+  { id: 'morning', label: 'Morning', range: '8:00 AM – 12:00 PM' },
   { id: 'afternoon', label: 'Afternoon', range: '12:00 PM – 5:00 PM' },
-  { id: 'evening',   label: 'Evening',   range: '5:00 PM – 10:00 PM' },
+  { id: 'evening', label: 'Evening', range: '5:00 PM – 10:00 PM' },
 ]
 
 const initialFormData = {
@@ -47,13 +47,13 @@ const initialFormData = {
     serviceStyle: '',
     menuSelections: {
       fruitsVeggies: [],
-      appetizers:    [],
-      pastasSides:   [],
-      meatballs:     [],
-      wings:         [],
-      sliders:       [],
-      meats:         [],
-      desserts:      [],
+      appetizers: [],
+      pastasSides: [],
+      meatballs: [],
+      wings: [],
+      sliders: [],
+      meats: [],
+      desserts: [],
     },
     dietaryRestrictions: [],
     needsBarService: null,
@@ -87,23 +87,23 @@ function validateStep(stepIndex, data, cateringStepIndex, decorationStepIndex) {
 
   if (stepIndex === 0) {
     if (!data.preferredDate) errors.preferredDate = 'Please select a date'
-    if (!data.timeSlot)      errors.timeSlot = 'Please select a time slot'
+    if (!data.timeSlot) errors.timeSlot = 'Please select a time slot'
   }
 
   if (stepIndex === 1) {
     if (!data.firstName.trim()) errors.firstName = 'First name is required'
-    if (!data.lastName.trim())  errors.lastName = 'Last name is required'
-    if (!data.phone.trim())     errors.phone = 'Phone number is required'
-    if (!data.email.trim())     errors.email = 'Email is required'
+    if (!data.lastName.trim()) errors.lastName = 'Last name is required'
+    if (!data.phone.trim()) errors.phone = 'Phone number is required'
+    if (!data.email.trim()) errors.email = 'Email is required'
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email))
       errors.email = 'Please enter a valid email'
   }
 
   if (stepIndex === 2) {
-    if (!data.eventType)    errors.eventType = 'Please select an event type'
-    if (!data.venueType)    errors.venueType = 'Please select a venue setting'
-    if (!data.guestCount)   errors.guestCount = 'Please enter an estimated guest count'
-    if (!data.budgetRange)  errors.budgetRange = 'Please select a budget range'
+    if (!data.eventType) errors.eventType = 'Please select an event type'
+    if (!data.venueType) errors.venueType = 'Please select a venue setting'
+    if (!data.guestCount) errors.guestCount = 'Please enter an estimated guest count'
+    if (!data.budgetRange) errors.budgetRange = 'Please select a budget range'
   }
 
   if (stepIndex === 3) {
@@ -344,7 +344,7 @@ export default function BookingForm() {
               <div className="space-y-6">
                 <div>
                   <label className="block font-nav text-xs uppercase tracking-[0.15em] text-white/70 mb-3">
-                    Select Date
+                    Select Event Date
                   </label>
                   <Calendar
                     selectedDate={formData.preferredDate}
@@ -364,11 +364,10 @@ export default function BookingForm() {
                       <button
                         key={slot.id}
                         onClick={() => updateField('timeSlot', slot.id)}
-                        className={`p-4 border text-center transition-all cursor-pointer ${
-                          formData.timeSlot === slot.id
+                        className={`p-4 border text-center transition-all cursor-pointer ${formData.timeSlot === slot.id
                             ? 'border-gold bg-gold/10 text-gold'
                             : 'border-white/10 text-white/50 hover:border-gold/30 hover:text-white/80'
-                        }`}
+                          }`}
                       >
                         <span className="block font-nav text-xs uppercase tracking-wider mb-1">
                           {slot.label}

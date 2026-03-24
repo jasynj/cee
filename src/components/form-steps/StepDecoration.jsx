@@ -5,44 +5,35 @@ const inputSmClass =
 const labelClass = 'block font-nav text-xs uppercase tracking-[0.15em] text-white/70 mb-2'
 const errorClass = 'text-red-400 text-xs mt-2'
 
-const THEMES = [
-  'Elegant / Classic',
-  'Modern / Contemporary',
-  'Rustic / Bohemian',
-  'Floral Fantasy',
-  'Fairytale / Whimsical',
-  'African / Cultural',
-  'Custom / Other',
-]
 
 const AREAS = [
-  { id: 'entrance',    label: 'Entrance / Foyer' },
-  { id: 'main_hall',   label: 'Main Hall / Venue' },
-  { id: 'tables',      label: 'Tables / Centerpieces' },
-  { id: 'stage',       label: 'Stage / Head Table' },
+  { id: 'entrance', label: 'Entrance / Foyer' },
+  { id: 'main_hall', label: 'Main Hall / Venue' },
+  { id: 'tables', label: 'Tables / Centerpieces' },
+  { id: 'stage', label: 'Stage / Head Table' },
   { id: 'photo_booth', label: 'Photo Booth Area' },
-  { id: 'ceiling',     label: 'Ceiling / Draping' },
-  { id: 'outdoor',     label: 'Outdoor / Garden' },
+  { id: 'ceiling', label: 'Ceiling / Draping' },
+  { id: 'outdoor', label: 'Outdoor / Garden' },
 ]
 
-// Countable items require a quantity input when selected
 const COUNTABLE_IDS = ['floral', 'balloons', 'centerpieces', 'backdrop', 'chairs']
 
 const ITEMS = [
-  { id: 'floral',       label: 'Floral Arrangements',  countable: true },
-  { id: 'balloons',     label: 'Balloon Décor',        countable: true },
-  { id: 'centerpieces', label: 'Table Centerpieces',   countable: true },
-  { id: 'draping',      label: 'Fabric Draping',       countable: false },
-  { id: 'lighting',     label: 'Lighting',             countable: false },
-  { id: 'backdrop',     label: 'Backdrop / Arch',      countable: true },
-  { id: 'chairs',       label: 'Chair Covers / Sashes',countable: true },
-  { id: 'other',        label: 'Other',                countable: false },
+  { id: 'floral', label: 'Floral Arrangements', countable: true },
+  { id: 'balloons', label: 'Balloon Décor', countable: true },
+  { id: 'centerpieces', label: 'Table Centerpieces', countable: true },
+  { id: 'draping', label: 'Fabric Draping', countable: false },
+  { id: 'lighting', label: 'Lighting', countable: false },
+  { id: 'sound', label: 'Sound', countable: false },
+  { id: 'backdrop', label: 'Backdrop / Arch', countable: true },
+  { id: 'chairs', label: 'Chair Covers / Sashes', countable: true },
+  { id: 'other', label: 'Other', countable: false },
 ]
 
 const TABLE_SHAPES = [
-  { id: 'circular',    label: 'Circular' },
+  { id: 'circular', label: 'Circular' },
   { id: 'rectangular', label: 'Rectangular' },
-  { id: 'mixed',       label: 'Mixed' },
+  { id: 'mixed', label: 'Mixed' },
 ]
 
 function YesNoToggle({ value, onChange, errorKey, errors }) {
@@ -53,11 +44,10 @@ function YesNoToggle({ value, onChange, errorKey, errors }) {
           <button
             key={label}
             onClick={() => onChange(val)}
-            className={`flex-1 py-3 border text-sm font-nav uppercase tracking-wider transition-all cursor-pointer ${
-              value === val
-                ? 'border-gold bg-gold/10 text-gold'
-                : 'border-white/10 text-white/50 hover:border-gold/30'
-            }`}
+            className={`flex-1 py-3 border text-sm font-nav uppercase tracking-wider transition-all cursor-pointer ${value === val
+              ? 'border-gold bg-gold/10 text-gold'
+              : 'border-white/10 text-white/50 hover:border-gold/30'
+              }`}
           >
             {label}
           </button>
@@ -109,16 +99,13 @@ export default function StepDecoration({ data, updateField, errors }) {
       {/* Theme */}
       <div>
         <label className={labelClass}>Decoration Theme / Style</label>
-        <select
+        <input
+          type="text"
           value={data.theme}
           onChange={(e) => updateField('theme', e.target.value)}
-          className={`${inputClass} ${!data.theme ? 'text-white/30' : ''}`}
-        >
-          <option value="">Select a theme</option>
-          {THEMES.map((t) => (
-            <option key={t} value={t}>{t}</option>
-          ))}
-        </select>
+          placeholder="e.g. Elegant, Rustic, Fairytale, African..."
+          className={inputClass}
+        />
         {errors['decoration.theme'] && (
           <p className={errorClass}>{errors['decoration.theme']}</p>
         )}
@@ -148,11 +135,10 @@ export default function StepDecoration({ data, updateField, errors }) {
                 role="checkbox"
                 aria-checked={isSelected}
                 onClick={() => toggleArea(area.id)}
-                className={`px-3 py-2 border text-xs font-nav tracking-wide transition-all cursor-pointer ${
-                  isSelected
-                    ? 'border-gold bg-gold/10 text-gold'
-                    : 'border-white/10 text-white/50 hover:border-gold/30 hover:text-white/80'
-                }`}
+                className={`px-3 py-2 border text-xs font-nav tracking-wide transition-all cursor-pointer ${isSelected
+                  ? 'border-gold bg-gold/10 text-gold'
+                  : 'border-white/10 text-white/50 hover:border-gold/30 hover:text-white/80'
+                  }`}
               >
                 {area.label}
               </button>
@@ -176,11 +162,10 @@ export default function StepDecoration({ data, updateField, errors }) {
                 role="checkbox"
                 aria-checked={isSelected}
                 onClick={() => toggleItem(item.id, item.countable)}
-                className={`px-3 py-2 border text-xs font-nav tracking-wide transition-all cursor-pointer ${
-                  isSelected
-                    ? 'border-gold bg-gold/10 text-gold'
-                    : 'border-white/10 text-white/50 hover:border-gold/30 hover:text-white/80'
-                }`}
+                className={`px-3 py-2 border text-xs font-nav tracking-wide transition-all cursor-pointer ${isSelected
+                  ? 'border-gold bg-gold/10 text-gold'
+                  : 'border-white/10 text-white/50 hover:border-gold/30 hover:text-white/80'
+                  }`}
               >
                 {item.label}
               </button>
@@ -251,11 +236,10 @@ export default function StepDecoration({ data, updateField, errors }) {
                 <button
                   key={shape.id}
                   onClick={() => updateField('tableShape', shape.id)}
-                  className={`p-3 border text-center transition-all cursor-pointer ${
-                    data.tableShape === shape.id
-                      ? 'border-gold bg-gold/10 text-gold'
-                      : 'border-white/10 text-white/50 hover:border-gold/30 hover:text-white/80'
-                  }`}
+                  className={`p-3 border text-center transition-all cursor-pointer ${data.tableShape === shape.id
+                    ? 'border-gold bg-gold/10 text-gold'
+                    : 'border-white/10 text-white/50 hover:border-gold/30 hover:text-white/80'
+                    }`}
                 >
                   <span className="block font-nav text-xs uppercase tracking-wider">
                     {shape.label}
