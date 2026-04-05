@@ -1,20 +1,20 @@
 export const testimonials = [
   {
     id: 1,
-    quote: 'Craig Events made our wedding absolutely magical. Every detail was handled with such care and professionalism. We could not have asked for a better team to bring our dream day to life.',
-    name: 'Jane & John',
-    role: 'Wedding Clients',
+    quote: "Food is good, customer service is always great. Appreciate you, keep growing. Black businesses doing amazing things — come see them!",
+    name: 'Alan Jackson',
+    role: 'Shreveport City Councilman.'
   },
   {
     id: 2,
-    quote: 'From the initial planning to the final farewell, the CEE team exceeded our expectations. Their attention to detail and creative vision transformed our corporate gala into an unforgettable experience.',
-    name: 'Jason',
-    role: 'Corporate Client',
+    quote: "I am so grateful for Craig and his entire staff. My party is amazing — the best brunch. The food is great, the service is great, the drinks are great. Just a great vibe for a beautiful Saturday afternoon. Book with Craig, you wo't be disappointed!",
+    name: 'Shoni Taylor',
+    role: 'Client',
   },
   {
     id: 3,
-    quote: 'The decoration and coordination were beyond anything we imagined. Our guests are still talking about how beautiful everything looked. Truly a world-class events team.',
-    name: 'Paul & Kaydeen',
-    role: 'Anniversary Celebration',
+    quote: 'Hey Craig, Jackie Christie here. Congratulations on an amazing event. Glad I could be helpful and hope you keep up the good work. I know you will.',
+    name: 'Jackie Christie',
+    role: 'Celebrity Guest & TV Personality',
   },
 ]
