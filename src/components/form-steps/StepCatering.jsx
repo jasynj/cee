@@ -86,14 +86,18 @@ const MENU_CATEGORIES = [
     ],
   },
   {
-    key: 'meats',
-    label: 'Meat',
+    key: 'protein',
+    label: 'Protein',
     items: [
       { id: 'chicken_baked', label: 'Chicken — Baked' },
       { id: 'chicken_fried', label: 'Chicken — Fried' },
       { id: 'chicken_grilled', label: 'Chicken — Grilled' },
+      { id: 'chicken_bites', label: 'Chicken Bites — Fried' },
+      { id: 'shrimp', label: 'Shrimp' },
+      { id: 'steak_bites', label: 'Steak Bites' },
       { id: 'catfish_strips', label: 'Catfish Strips' },
       { id: 'chicken_strips', label: 'Chicken Strips' },
+
     ],
   },
   {
